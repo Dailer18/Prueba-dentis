@@ -1,0 +1,3020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medisch - Healthcare Center & Medical Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <style>
+        /* --- ESTILOS GENERALES MEJORADOS --- */
+        :root {
+            --primary-dark: #0c2b4b;
+            --primary-cyan: #00bcca;
+            --primary-cyan-dark: #0099a6;
+            --accent-green: #28a745;
+            --accent-orange: #fd7e14;
+            --text-grey: #555;
+            --bg-light: #f8f9fa;
+            --bg-lighter: #fdfdfd;
+            --border-color: #eaeaea;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Segoe UI', 'Inter', Roboto, Helvetica, Arial, sans-serif; 
+            color: var(--text-grey); 
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Tipografía mejorada */
+        h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.3; }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.8rem; }
+        
+        /* Utility Classes */
+        .text-cyan { color: var(--primary-cyan) !important; }
+        .bg-cyan { background-color: var(--primary-cyan) !important; }
+        .bg-darkblue { background-color: var(--primary-dark) !important; }
+        .text-darkblue { color: var(--primary-dark) !important; }
+        .rounded-lg { border-radius: 15px !important; }
+        .shadow-soft { box-shadow: 0 8px 30px rgba(0,0,0,0.08) !important; }
+        .shadow-hover { transition: box-shadow 0.3s ease; }
+        .shadow-hover:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.12) !important; }
+        
+        /* Scroll suave */
+        html { scroll-behavior: smooth; }
+        
+        /* Botones mejorados */
+        .btn-appoint {
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-cyan-dark));
+            color: white;
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 188, 202, 0.3);
+        }
+        .btn-appoint:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 20px rgba(0, 188, 202, 0.4);
+            color: white;
+        }
+        .btn-outline-cyan {
+            border: 2px solid var(--primary-cyan);
+            color: var(--primary-cyan);
+            background: transparent;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-cyan:hover {
+            background-color: var(--primary-cyan);
+            color: white;
+        }
+        
+        /* Top Bar Mejorada */
+        .top-bar { 
+            background: linear-gradient(to right, var(--primary-dark), #153a6d); 
+            color: white; 
+            padding: 12px 0; 
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .top-bar a { color: rgba(255,255,255,0.8); text-decoration: none; }
+        .top-bar a:hover { color: white; }
+        
+        /* Navbar Mejorada */
+        .navbar { 
+            background: white; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07); 
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled { padding: 10px 0; }
+        .navbar-brand { 
+            font-size: 2.2rem; 
+            font-weight: 900; 
+            color: var(--primary-dark) !important; 
+            font-style: italic;
+            background: linear-gradient(to right, var(--primary-dark), var(--primary-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link { 
+            color: var(--primary-dark) !important; 
+            font-weight: 600; 
+            margin: 0 10px;
+            position: relative;
+            padding: 8px 0 !important;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-cyan);
+            transition: width 0.3s ease;
+            border-radius: 3px;
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        
+        /* Carrito Mejorado */
+        .cart-icon { 
+            position: relative; 
+            cursor: pointer; 
+            margin-right: 20px; 
+            color: var(--primary-dark); 
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+        .cart-icon:hover { transform: scale(1.1); }
+        .cart-badge { 
+            position: absolute; 
+            top: -8px; 
+            right: -8px; 
+            font-size: 0.7rem; 
+            padding: 4px 8px; 
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        
+        /* WHATSAPP FLOAT Mejorado */
+        .whatsapp-float {
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px;
+            background: linear-gradient(135deg, #25d366, #1ebc57);
+            color: white;
+            width: 65px; 
+            height: 65px; 
+            border-radius: 50%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 32px; 
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000; 
+            transition: all 0.3s ease; 
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-float:hover { 
+            transform: scale(1.1) rotate(5deg); 
+            color: white; 
+        }
+        
+        /* HERO SECTION Mejorada */
+        .hero-section {
+            background: linear-gradient(rgba(12, 43, 75, 0.85), rgba(12, 43, 75, 0.9)), 
+                        url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            height: 90vh;
+            display: flex; 
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, white, transparent);
+        }
+        .hero-title { 
+            font-size: 3.8rem; 
+            font-weight: 900; 
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            line-height: 1.1;
+        }
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+        }
+        @media(min-width: 992px) { 
+            .hero-title { font-size: 4.8rem; } 
+            .hero-subtitle { font-size: 1.5rem; }
+        }
+        
+        /* ICON BOXES Mejorados */
+        .icon-box { 
+            background: white; 
+            padding: 40px 25px; 
+            text-align: center; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            transition: all 0.4s ease; 
+            margin-top: -50px; 
+            position: relative; 
+            z-index: 10;
+            border: 1px solid rgba(0,0,0,0.05);
+            height: 100%;
+        }
+        .icon-box:hover { 
+            transform: translateY(-15px); 
+            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-cyan-dark));
+            border-color: transparent;
+        }
+        .icon-box i { 
+            font-size: 50px; 
+            color: var(--primary-cyan); 
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+        }
+        .icon-box:hover i, 
+        .icon-box:hover h5,
+        .icon-box:hover p { 
+            color: white !important; 
+        }
+        
+        /* DOCTORS CARDS Mejoradas */
+        .doctor-card { 
+            border: none; 
+            transition: all 0.4s ease; 
+            overflow: hidden; 
+            background: #fff; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            height: 100%;
+        }
+        .doctor-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .doctor-img-container {
+            overflow: hidden;
+            height: 320px;
+            position: relative;
+        }
+        .doctor-img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .doctor-card:hover .doctor-img { transform: scale(1.05); }
+        .doctor-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+        .doctor-card:hover .doctor-overlay { transform: translateY(0); }
+        
+        /* SHOP CARDS Mejoradas */
+        .product-card { 
+            border: 1px solid var(--border-color); 
+            transition: all 0.4s ease; 
+            background: white; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            position: relative;
+            height: 100%;
+        }
+        .product-card:hover { 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
+            transform: translateY(-8px); 
+            border-color: var(--primary-cyan);
+        }
+        .product-img-container { 
+            height: 240px; 
+            overflow: hidden; 
+            background: #f9f9f9; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 25px;
+        }
+        .product-img { 
+            max-height: 100%; 
+            max-width: 100%; 
+            object-fit: contain; 
+            mix-blend-mode: multiply;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-img { transform: scale(1.05); }
+        .product-badge { 
+            position: absolute; 
+            top: 15px; 
+            left: 15px; 
+            padding: 6px 15px; 
+            border-radius: 6px; 
+            font-size: 0.85rem; 
+            font-weight: bold; 
+            color: white; 
+            z-index: 2;
+        }
+        .badge-sale { background: linear-gradient(to right, #ff4757, #ff3838); }
+        .badge-new { background: linear-gradient(to right, var(--primary-cyan), var(--primary-cyan-dark)); }
+        .badge-popular { background: linear-gradient(to right, var(--accent-orange), #ff8c00); }
+        .product-rating { color: #ffc107; font-size: 0.9rem; }
+        
+        /* SERVICES Mejorados */
+        .service-box { 
+            padding: 45px 30px; 
+            border: 1px solid var(--border-color); 
+            transition: all 0.4s ease; 
+            border-radius: 12px; 
+            background: white;
+            height: 100%;
+        }
+        .service-box:hover { 
+            border-color: var(--primary-cyan); 
+            box-shadow: 0 15px 30px rgba(0,188,202,0.12); 
+            transform: translateY(-5px);
+        }
+        .service-icon { 
+            width: 80px; 
+            height: 80px; 
+            background: rgba(0,188,202,0.1); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 25px; 
+            color: var(--primary-cyan); 
+            font-size: 2rem;
+            transition: all 0.4s ease;
+        }
+        .service-box:hover .service-icon { 
+            background: var(--primary-cyan); 
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        /* PAGE HEADER Mejorado */
+        .page-header { 
+            background: linear-gradient(rgba(12, 43, 75, 0.9), rgba(12, 43, 75, 0.95)), 
+                        url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 70px;
+            text-align: center; 
+            margin-bottom: 70px; 
+            color: white;
+            position: relative;
+        }
+        .page-header h1 { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 3rem; 
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+        .page-header p { 
+            font-size: 1.1rem; 
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .breadcrumb {
+            background: transparent;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .breadcrumb-item a { color: rgba(255,255,255,0.8); }
+        .breadcrumb-item.active { color: var(--primary-cyan); }
+        
+        /* SPA LOGIC */
+        .page-section { 
+            display: none; 
+            animation: fadeIn 0.7s ease;
+            min-height: 70vh;
+        }
+        .page-section.active { display: block; }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        /* FEATURES SECTION */
+        .feature-card {
+            padding: 30px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* TESTIMONIALS */
+        .testimonial-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--primary-cyan);
+            height: 100%;
+        }
+        .testimonial-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-cyan);
+        }
+        
+        /* STATS COUNTER */
+        .stats-box {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        .stats-box:hover {
+            background: white;
+            transform: translateY(-5px);
+        }
+        .counter {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary-cyan);
+            line-height: 1;
+        }
+        
+        /* TIMETABLE Mejorado */
+        .timetable-table {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .timetable-table th {
+            background: linear-gradient(to right, var(--primary-dark), #1a4a8f);
+            color: white;
+            padding: 18px 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+        .timetable-table td {
+            padding: 20px 15px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .timetable-table tr:hover td {
+            background-color: rgba(0, 188, 202, 0.05);
+        }
+        
+        /* FOOTER Mejorado */
+        footer { 
+            background: linear-gradient(to bottom, #051424, #0a1a2e); 
+            color: #bbb; 
+            padding-top: 100px; 
+            margin-top: 100px;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-cyan), var(--accent-green));
+        }
+        footer h5 { 
+            color: white; 
+            font-weight: 700; 
+            margin-bottom: 25px; 
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-cyan);
+        }
+        footer a { 
+            color: #bbb; 
+            text-decoration: none; 
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        footer a:hover { 
+            color: var(--primary-cyan); 
+            transform: translateX(5px);
+        }
+        .footer-links li { margin-bottom: 12px; }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            background: var(--primary-cyan);
+            transform: translateY(-3px);
+        }
+        
+        /* MODAL CARRITO */
+        .cart-modal .modal-content {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .cart-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .cart-item:hover {
+            background-color: rgba(0, 188, 202, 0.05);
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.8rem; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .page-header { padding: 80px 0 50px; }
+            .icon-box { margin-top: 20px; }
+        }
+        
+        /* ANIMACIONES */
+        .fade-in { animation: fadeIn 1s ease; }
+        .slide-in-left { animation: slideInLeft 0.8s ease; }
+        .slide-in-right { animation: slideInRight 0.8s ease; }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Top Bar Mejorada -->
+    <div class="top-bar">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="mb-2 mb-md-0">
+                <i class="fas fa-phone-alt me-2 text-cyan"></i> Emergency: <strong>002 010612457410</strong>
+                <span class="mx-3 d-none d-md-inline">|</span>
+                <i class="fas fa-map-marker-alt me-2 text-cyan"></i> 2307 Beverley Rd, Brooklyn, NY 11226
+            </div>
+            <div class="d-flex">
+                <a href="#" class="me-3"><i class="fas fa-envelope me-1"></i> info@medisch.com</a>
+                <a href="#" class="d-none d-md-inline"><i class="far fa-clock me-1"></i> Mon-Fri: 8am - 10pm</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar Mejorada -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="#" onclick="showPage('home')">
+                <i class="fas fa-heartbeat text-cyan me-2"></i>Medisch
+            </a>
+            
+            <div class="d-flex align-items-center order-lg-3">
+                <div class="cart-icon me-3" data-bs-toggle="modal" data-bs-target="#cartModal" title="View Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge bg-danger cart-badge" id="cart-count">0</span>
+                </div>
+                <button class="btn btn-appoint d-none d-lg-inline-flex ms-2" onclick="showPage('appointment')">
+                    <i class="fas fa-calendar-check me-2"></i>Appointment
+                </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navContent">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" onclick="showPage('home')" id="nav-home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showPage('about')" id="nav-about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showPage('services')" id="nav-services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showPage('doctors')" id="nav-doctors">Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showPage('shop')" id="nav-shop">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+                    <li class="nav-item d-lg-none mt-3">
+                        <button class="btn btn-appoint w-100" onclick="showPage('appointment')">
+                            <i class="fas fa-calendar-check me-2"></i>Make Appointment
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección HOME -->
+    <section id="home" class="page-section active">
+        <div class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <h5 class="text-uppercase text-cyan fw-bold mb-3"><i class="fas fa-star me-2"></i>Leading Healthcare Provider</h5>
+                        <h1 class="hero-title mb-4">Advanced Medical Care For Your Family</h1>
+                        <p class="hero-subtitle mb-4">Experience world-class healthcare with cutting-edge technology and compassionate professionals dedicated to your well-being.</p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <button class="btn btn-appoint btn-lg" onclick="showPage('appointment')">
+                                <i class="fas fa-calendar-check me-2"></i>Book Appointment
+                            </button>
+                            <button class="btn btn-outline-light btn-lg rounded-pill" onclick="showPage('services')">
+                                <i class="fas fa-stethoscope me-2"></i>Our Services
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <div class="text-center">
+                            <div class="bg-white rounded-lg p-4 d-inline-block shadow-soft">
+                                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                     class="img-fluid rounded-lg" alt="Doctor Consultation">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="icon-box">
+                        <i class="fas fa-user-md"></i>
+                        <h5 class="fw-bold text-darkblue mb-3">Expert Doctors</h5>
+                        <p class="text-muted">Board-certified physicians with 10+ years of experience</p>
+                        <a href="#" onclick="showPage('doctors')" class="text-cyan fw-bold text-decoration-none">Meet Our Team <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="icon-box">
+                        <i class="fas fa-clock"></i>
+                        <h5 class="fw-bold text-darkblue mb-3">24/7 Emergency</h5>
+                        <p class="text-muted">Round-the-clock emergency care with rapid response teams</p>
+                        <a href="tel:002010612457410" class="text-cyan fw-bold text-decoration-none">Call Now <i class="fas fa-phone ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="icon-box">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h5 class="fw-bold text-darkblue mb-3">Easy Appointment</h5>
+                        <p class="text-muted">Online booking system with same-day appointments available</p>
+                        <a href="#" onclick="showPage('appointment')" class="text-cyan fw-bold text-decoration-none">Book Now <i class="fas fa-calendar ms-1"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="icon-box">
+                        <i class="fas fa-ambulance"></i>
+                        <h5 class="fw-bold text-darkblue mb-3">Ambulance Service</h5>
+                        <p class="text-muted">Fully equipped ambulances with paramedic support</p>
+                        <a href="#" onclick="showPage('contact')" class="text-cyan fw-bold text-decoration-none">Contact Us <i class="fas fa-info-circle ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Servicios Destacados -->
+        <div class="container mt-5 pt-5">
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <h5 class="text-cyan fw-bold mb-3">OUR SPECIALTIES</h5>
+                    <h2 class="fw-bold text-darkblue mb-4">Comprehensive Medical Services</h2>
+                    <p class="text-muted">We offer a full spectrum of healthcare services from preventive care to complex surgical procedures, utilizing state-of-the-art technology and evidence-based practices.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <button class="btn btn-outline-cyan" onclick="showPage('services')">View All Services</button>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-heartbeat"></i></div>
+                        <h4 class="fw-bold text-darkblue">Cardiology</h4>
+                        <p class="text-muted">Advanced cardiac care including echocardiography, stress testing, and interventional procedures.</p>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Cardiac Rehabilitation</li>
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Pacemaker Implantation</li>
+                            <li><i class="fas fa-check text-cyan me-2"></i> Coronary Angiography</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-brain"></i></div>
+                        <h4 class="fw-bold text-darkblue">Neurology</h4>
+                        <p class="text-muted">Comprehensive neurological care for disorders of the brain, spine, and nervous system.</p>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> EEG & EMG Testing</li>
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Stroke Management</li>
+                            <li><i class="fas fa-check text-cyan me-2"></i> Epilepsy Treatment</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-baby"></i></div>
+                        <h4 class="fw-bold text-darkblue">Pediatrics</h4>
+                        <p class="text-muted">Specialized care for infants, children, and adolescents with child-friendly environment.</p>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Vaccination Programs</li>
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Growth Monitoring</li>
+                            <li><i class="fas fa-check text-cyan me-2"></i> Pediatric Nutrition</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Estadísticas -->
+        <div class="container-fluid mt-5 pt-5 bg-light">
+            <div class="container py-5">
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-box">
+                            <div class="counter" data-count="25000">0</div>
+                            <p class="fw-bold text-darkblue mt-2">Happy Patients</p>
+                            <small class="text-muted">Served since 1998</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-box">
+                            <div class="counter" data-count="150">0</div>
+                            <p class="fw-bold text-darkblue mt-2">Expert Doctors</p>
+                            <small class="text-muted">Specialized professionals</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-box">
+                            <div class="counter" data-count="40">0</div>
+                            <p class="fw-bold text-darkblue mt-2">Departments</p>
+                            <small class="text-muted">Medical specialties</small>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stats-box">
+                            <div class="counter" data-count="98">0</div>
+                            <p class="fw-bold text-darkblue mt-2">Success Rate</p>
+                            <small class="text-muted">Surgical procedures</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Testimonios -->
+        <div class="container mt-5 pt-5">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h5 class="text-cyan fw-bold mb-3">PATIENT TESTIMONIALS</h5>
+                    <h2 class="fw-bold text-darkblue mb-4">What Our Patients Say</h2>
+                    <p class="text-muted">Hear from our patients about their experiences at Medisch Healthcare Center.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616c113a1c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 class="testimonial-img me-3" alt="Patient">
+                            <div>
+                                <h6 class="fw-bold mb-0">Sarah Johnson</h6>
+                                <small class="text-muted">Cardiology Patient</small>
+                            </div>
+                        </div>
+                        <p class="text-muted">"The care I received at Medisch was exceptional. Dr. Muldoone explained everything clearly and the staff was incredibly supportive throughout my treatment."</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 class="testimonial-img me-3" alt="Patient">
+                            <div>
+                                <h6 class="fw-bold mb-0">Michael Chen</h6>
+                                <small class="text-muted">Orthopedics Patient</small>
+                            </div>
+                        </div>
+                        <p class="text-muted">"After my knee surgery, the rehabilitation team at Medisch helped me recover faster than expected. Professional and compassionate care at every step."</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                                 class="testimonial-img me-3" alt="Patient">
+                            <div>
+                                <h6 class="fw-bold mb-0">Emma Rodriguez</h6>
+                                <small class="text-muted">Pediatrics Patient</small>
+                            </div>
+                        </div>
+                        <p class="text-muted">"Dr. Andaloro is wonderful with children. My son actually looks forward to his check-ups! The pediatric ward is clean, bright, and child-friendly."</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Emergencia -->
+        <div class="container-fluid mt-5">
+            <div class="row text-white">
+                <div class="col-md-4 bg-cyan p-5">
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="fas fa-phone-volume fa-3x me-4"></i>
+                        <div>
+                            <h3 class="fw-bold">Emergency Cases</h3>
+                            <p class="my-3">24/7 emergency medical services with rapid response teams and fully equipped ambulances.</p>
+                        </div>
+                    </div>
+                    <h2 class="fw-bold"><i class="fas fa-phone me-3"></i> 010-6124-5741</h2>
+                    <p class="mt-2">Or dial <strong>911</strong> for immediate assistance</p>
+                </div>
+                <div class="col-md-4 bg-darkblue p-5">
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="fas fa-calendar-alt fa-3x me-4"></i>
+                        <div>
+                            <h3 class="fw-bold">Doctors Timetable</h3>
+                            <p class="my-3">View specialist schedules and book appointments with our expert medical team.</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-light rounded-pill px-4 py-2" onclick="showPage('doctors')">
+                        <i class="fas fa-table me-2"></i>View Full Timetable
+                    </button>
+                </div>
+                <div class="col-md-4 bg-darker p-5" style="background-color: #061a2e;">
+                    <div class="d-flex align-items-start mb-4">
+                        <i class="fas fa-clock fa-3x me-4"></i>
+                        <div>
+                            <h3 class="fw-bold">Opening Hours</h3>
+                            <ul class="list-unstyled mt-3">
+                                <li class="d-flex justify-content-between mb-3 pb-2 border-bottom border-secondary">
+                                    <span>Monday - Friday</span>
+                                    <span class="fw-bold">8:00 AM - 10:00 PM</span>
+                                </li>
+                                <li class="d-flex justify-content-between mb-3 pb-2 border-bottom border-secondary">
+                                    <span>Saturday</span>
+                                    <span class="fw-bold">9:00 AM - 8:00 PM</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <span>Sunday & Holidays</span>
+                                    <span class="fw-bold">10:00 AM - 6:00 PM</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección ABOUT US Mejorada -->
+    <section id="about" class="page-section">
+        <div class="page-header">
+            <div class="container">
+                <h1>About Medisch</h1>
+                <p class="lead">For over 25 years, we've been providing exceptional healthcare with compassion, innovation, and excellence.</p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="container mb-5">
+            <!-- Historia y Misión -->
+            <div class="row align-items-center mb-5 pb-5">
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             class="img-fluid rounded-lg shadow-soft" alt="About Team">
+                        <div class="position-absolute bottom-0 start-0 bg-cyan text-white p-4 rounded-lg m-4">
+                            <h3 class="fw-bold mb-0">25+</h3>
+                            <p class="mb-0">Years of Excellence</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <h5 class="text-cyan fw-bold mb-3">OUR STORY</h5>
+                    <h2 class="fw-bold mb-4 text-darkblue">Pioneering Healthcare Since 1998</h2>
+                    <p class="text-secondary mb-4">Founded by Dr. Robert Medisch, our center began as a small community clinic with a big vision: to make world-class healthcare accessible to everyone. Today, we've grown into a comprehensive medical center serving thousands of patients annually.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-bullseye text-cyan fa-2x me-3 mt-1"></i>
+                                <div>
+                                    <h5 class="fw-bold text-darkblue">Our Mission</h5>
+                                    <p class="text-muted small">To provide compassionate, innovative, and accessible healthcare that improves the lives of our patients and community.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-eye text-cyan fa-2x me-3 mt-1"></i>
+                                <div>
+                                    <h5 class="fw-bold text-darkblue">Our Vision</h5>
+                                    <p class="text-muted small">To be the leading healthcare provider recognized for clinical excellence, patient satisfaction, and medical innovation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-hand-holding-heart text-cyan fa-2x me-3 mt-1"></i>
+                                <div>
+                                    <h5 class="fw-bold text-darkblue">Our Values</h5>
+                                    <p class="text-muted small">Compassion, integrity, excellence, collaboration, and innovation guide everything we do.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-award text-cyan fa-2x me-3 mt-1"></i>
+                                <div>
+                                    <h5 class="fw-bold text-darkblue">Accreditations</h5>
+                                    <p class="text-muted small">JCI Accredited, ISO 9001:2015 Certified, Member of American Hospital Association.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Valores -->
+            <div class="row mt-5 pt-5">
+                <div class="col-12 text-center mb-5">
+                    <h5 class="text-cyan fw-bold mb-3">OUR VALUES</h5>
+                    <h2 class="fw-bold text-darkblue mb-4">What Makes Us Different</h2>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center">
+                        <div class="bg-cyan text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                            <i class="fas fa-user-md fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold text-darkblue">Expert Specialists</h5>
+                        <p class="text-muted">Our doctors are board-certified with advanced training from top medical institutions.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center">
+                        <div class="bg-cyan text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                            <i class="fas fa-microscope fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold text-darkblue">Advanced Technology</h5>
+                        <p class="text-muted">State-of-the-art diagnostic and treatment equipment for accurate care.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center">
+                        <div class="bg-cyan text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                            <i class="fas fa-hand-holding-heart fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold text-darkblue">Patient-Centered Care</h5>
+                        <p class="text-muted">Personalized treatment plans focused on individual needs and preferences.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center">
+                        <div class="bg-cyan text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 80px; height: 80px;">
+                            <i class="fas fa-shield-alt fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold text-darkblue">Safety First</h5>
+                        <p class="text-muted">Highest standards of sterilization, infection control, and patient safety protocols.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Estadísticas -->
+            <div class="row mt-5 pt-5 text-center bg-light rounded-lg py-5">
+                <div class="col-md-3 col-6 mb-4">
+                    <h2 class="fw-bold text-cyan display-4 counter" data-count="25000">0</h2>
+                    <p class="fw-bold text-darkblue">Patients Treated</p>
+                    <small class="text-muted">With 98% satisfaction rate</small>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <h2 class="fw-bold text-cyan display-4 counter" data-count="150">0</h2>
+                    <p class="fw-bold text-darkblue">Expert Doctors</p>
+                    <small class="text-muted">Across 40+ specialties</small>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <h2 class="fw-bold text-cyan display-4 counter" data-count="15000">0</h2>
+                    <p class="fw-bold text-darkblue">Surgeries Performed</p>
+                    <small class="text-muted">With 99% success rate</small>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <h2 class="fw-bold text-cyan display-4 counter" data-count="35">0</h2>
+                    <p class="fw-bold text-darkblue">Awards Won</p>
+                    <small class="text-muted">For excellence in healthcare</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección SERVICES Mejorada -->
+    <section id="services" class="page-section">
+        <div class="page-header">
+            <div class="container">
+                <h1>Our Medical Services</h1>
+                <p class="lead">Comprehensive healthcare services delivered with expertise and compassion.</p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Services</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="container mb-5">
+            <!-- Servicios Principales -->
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-heartbeat"></i></div>
+                        <h4 class="fw-bold text-darkblue">Cardiology</h4>
+                        <p class="text-muted">Comprehensive heart care including preventive cardiology, interventional procedures, and cardiac rehabilitation.</p>
+                        <div class="mt-4">
+                            <h6 class="text-darkblue fw-bold">Services Include:</h6>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Echocardiography</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Stress Testing</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Cardiac Catheterization</li>
+                                <li><i class="fas fa-check-circle text-cyan me-2"></i> Pacemaker Implantation</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-outline-cyan mt-3 w-100" onclick="showPage('appointment')">Book Consultation</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-brain"></i></div>
+                        <h4 class="fw-bold text-darkblue">Neurology</h4>
+                        <p class="text-muted">Advanced diagnosis and treatment for disorders of the nervous system, brain, and spinal cord.</p>
+                        <div class="mt-4">
+                            <h6 class="text-darkblue fw-bold">Services Include:</h6>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> EEG & EMG Testing</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Stroke Management</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Epilepsy Treatment</li>
+                                <li><i class="fas fa-check-circle text-cyan me-2"></i> Migraine Management</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-outline-cyan mt-3 w-100" onclick="showPage('appointment')">Book Consultation</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-bone"></i></div>
+                        <h4 class="fw-bold text-darkblue">Orthopedics</h4>
+                        <p class="text-muted">Comprehensive care for bones, joints, muscles, ligaments, and tendons injuries and conditions.</p>
+                        <div class="mt-4">
+                            <h6 class="text-darkblue fw-bold">Services Include:</h6>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Joint Replacement</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Sports Medicine</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Arthroscopic Surgery</li>
+                                <li><i class="fas fa-check-circle text-cyan me-2"></i> Fracture Management</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-outline-cyan mt-3 w-100" onclick="showPage('appointment')">Book Consultation</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-baby"></i></div>
+                        <h4 class="fw-bold text-darkblue">Pediatrics</h4>
+                        <p class="text-muted">Specialized medical care for infants, children, and adolescents in a child-friendly environment.</p>
+                        <div class="mt-4">
+                            <h6 class="text-darkblue fw-bold">Services Include:</h6>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Well-child Checkups</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Vaccination Programs</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Developmental Screening</li>
+                                <li><i class="fas fa-check-circle text-cyan me-2"></i> Pediatric Nutrition</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-outline-cyan mt-3 w-100" onclick="showPage('appointment')">Book Consultation</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-eye"></i></div>
+                        <h4 class="fw-bold text-darkblue">Ophthalmology</h4>
+                        <p class="text-muted">Complete eye care services from routine vision exams to advanced surgical procedures.</p>
+                        <div class="mt-4">
+                            <h6 class="text-darkblue fw-bold">Services Include:</h6>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Cataract Surgery</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> LASIK Vision Correction</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Glaucoma Management</li>
+                                <li><i class="fas fa-check-circle text-cyan me-2"></i> Retinal Treatments</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-outline-cyan mt-3 w-100" onclick="showPage('appointment')">Book Consultation</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box">
+                        <div class="service-icon"><i class="fas fa-tooth"></i></div>
+                        <h4 class="fw-bold text-darkblue">Dental Care</h4>
+                        <p class="text-muted">Comprehensive dental services including preventive, restorative, and cosmetic dentistry.</p>
+                        <div class="mt-4">
+                            <h6 class="text-darkblue fw-bold">Services Include:</h6>
+                            <ul class="list-unstyled text-muted">
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Dental Implants</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Orthodontics</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-cyan me-2"></i> Teeth Whitening</li>
+                                <li><i class="fas fa-check-circle text-cyan me-2"></i> Root Canal Treatment</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-outline-cyan mt-3 w-100" onclick="showPage('appointment')">Book Consultation</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Servicios Adicionales -->
+            <div class="row mt-5 pt-5">
+                <div class="col-12 text-center mb-5">
+                    <h5 class="text-cyan fw-bold mb-3">ADDITIONAL SERVICES</h5>
+                    <h2 class="fw-bold text-darkblue mb-4">Support & Diagnostic Services</h2>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="bg-cyan text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 70px; height: 70px;">
+                            <i class="fas fa-flask fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold text-darkblue">Laboratory</h5>
+                        <p class="text-muted">Advanced diagnostic testing with rapid results for accurate diagnosis.</p>
+                        <ul class="list-unstyled text-muted text-start small">
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Blood Tests</li>
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Urine Analysis</li>
+                            <li><i class="fas fa-check text-cyan me-2"></i> Pathology Services</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="bg-cyan text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 70px; height: 70px;">
+                            <i class="fas fa-x-ray fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold text-darkblue">Imaging Center</h5>
+                        <p class="text-muted">State-of-the-art imaging technology for precise diagnosis.</p>
+                        <ul class="list-unstyled text-muted text-start small">
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> MRI & CT Scan</li>
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Ultrasound</li>
+                            <li><i class="fas fa-check text-cyan me-2"></i> Digital X-Ray</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="bg-cyan text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 70px; height: 70px;">
+                            <i class="fas fa-ambulance fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold text-darkblue">Emergency Care</h5>
+                        <p class="text-muted">24/7 emergency services with rapid response and critical care.</p>
+                        <ul class="list-unstyled text-muted text-start small">
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Trauma Care</li>
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Ambulance Service</li>
+                            <li><i class="fas fa-check text-cyan me-2"></i> ICU Facilities</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="feature-card text-center h-100">
+                        <div class="bg-cyan text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4" style="width: 70px; height: 70px;">
+                            <i class="fas fa-pills fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold text-darkblue">Pharmacy</h5>
+                        <p class="text-muted">In-house pharmacy with wide range of medications and health products.</p>
+                        <ul class="list-unstyled text-muted text-start small">
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> Prescription Drugs</li>
+                            <li class="mb-2"><i class="fas fa-check text-cyan me-2"></i> OTC Medications</li>
+                            <li><i class="fas fa-check text-cyan me-2"></i> Medical Supplies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección DOCTORS Mejorada -->
+    <section id="doctors" class="page-section">
+        <div class="page-header">
+            <div class="container">
+                <h1>Meet Our Medical Team</h1>
+                <p class="lead">Board-certified specialists dedicated to providing exceptional patient care.</p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Our Doctors</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="container mb-5">
+            <!-- Equipo Médico -->
+            <div class="row mb-5">
+                <div class="col-12 text-center mb-5">
+                    <h5 class="text-cyan fw-bold mb-3">OUR SPECIALISTS</h5>
+                    <h2 class="fw-bold text-darkblue mb-4">Expert Medical Professionals</h2>
+                    <p class="text-muted w-75 mx-auto">Our team consists of highly qualified physicians with advanced training and years of experience in their respective specialties.</p>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100">
+                        <div class="doctor-img-container">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 class="doctor-img" alt="Dr. Richard Muldoone">
+                            <div class="doctor-overlay">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-white"><i class="fas fa-envelope fa-lg"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-light w-100" onclick="showPage('appointment')">Book Appointment</a>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold text-darkblue mb-1">Dr. Richard Muldoone</h5>
+                            <p class="text-cyan mb-3">Chief of Cardiology</p>
+                            <p class="text-muted small mb-0">MD, FACC, 20+ years experience. Specializes in interventional cardiology and heart failure management.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">Echocardiography</span>
+                                <span class="badge bg-light text-dark">Cardiac Cath</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100">
+                        <div class="doctor-img-container">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 class="doctor-img" alt="Dr. Maria Andaloro">
+                            <div class="doctor-overlay">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-white"><i class="fas fa-envelope fa-lg"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-light w-100" onclick="showPage('appointment')">Book Appointment</a>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold text-darkblue mb-1">Dr. Maria Andaloro</h5>
+                            <p class="text-cyan mb-3">Senior Pediatrician</p>
+                            <p class="text-muted small mb-0">MD, FAAP, 15+ years experience. Specializes in pediatric care and adolescent medicine.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">Vaccinations</span>
+                                <span class="badge bg-light text-dark">Child Development</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100">
+                        <div class="doctor-img-container">
+                            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 class="doctor-img" alt="Dr. Michael Brian">
+                            <div class="doctor-overlay">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-white"><i class="fas fa-envelope fa-lg"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-light w-100" onclick="showPage('appointment')">Book Appointment</a>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold text-darkblue mb-1">Dr. Michael Brian</h5>
+                            <p class="text-cyan mb-3">Neurology Director</p>
+                            <p class="text-muted small mb-0">MD, FAAN, 18+ years experience. Specializes in stroke management and movement disorders.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">Stroke Care</span>
+                                <span class="badge bg-light text-dark">Epilepsy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100">
+                        <div class="doctor-img-container">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 class="doctor-img" alt="Dr. Sarah Palmer">
+                            <div class="doctor-overlay">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-white"><i class="fas fa-envelope fa-lg"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-light w-100" onclick="showPage('appointment')">Book Appointment</a>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold text-darkblue mb-1">Dr. Sarah Palmer</h5>
+                            <p class="text-cyan mb-3">Dermatology Head</p>
+                            <p class="text-muted small mb-0">MD, FAAD, 12+ years experience. Specializes in cosmetic dermatology and skin cancer treatment.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">Skin Cancer</span>
+                                <span class="badge bg-light text-dark">Cosmetic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Más doctores -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100">
+                        <div class="doctor-img-container">
+                            <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 class="doctor-img" alt="Dr. James Wilson">
+                            <div class="doctor-overlay">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-white"><i class="fas fa-envelope fa-lg"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-light w-100" onclick="showPage('appointment')">Book Appointment</a>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold text-darkblue mb-1">Dr. James Wilson</h5>
+                            <p class="text-cyan mb-3">Orthopedic Surgeon</p>
+                            <p class="text-muted small mb-0">MD, FAAOS, 22+ years experience. Specializes in joint replacement and sports injuries.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">Joint Replacement</span>
+                                <span class="badge bg-light text-dark">Sports Medicine</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100">
+                        <div class="doctor-img-container">
+                            <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 class="doctor-img" alt="Dr. Lisa Chen">
+                            <div class="doctor-overlay">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-white"><i class="fas fa-envelope fa-lg"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-light w-100" onclick="showPage('appointment')">Book Appointment</a>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold text-darkblue mb-1">Dr. Lisa Chen</h5>
+                            <p class="text-cyan mb-3">Ophthalmologist</p>
+                            <p class="text-muted small mb-0">MD, FACS, 14+ years experience. Specializes in cataract surgery and refractive procedures.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">Cataract Surgery</span>
+                                <span class="badge bg-light text-dark">LASIK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100">
+                        <div class="doctor-img-container">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 class="doctor-img" alt="Dr. Robert Kim">
+                            <div class="doctor-overlay">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-white"><i class="fas fa-envelope fa-lg"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-light w-100" onclick="showPage('appointment')">Book Appointment</a>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold text-darkblue mb-1">Dr. Robert Kim</h5>
+                            <p class="text-cyan mb-3">Gastroenterologist</p>
+                            <p class="text-muted small mb-0">MD, FACG, 16+ years experience. Specializes in endoscopic procedures and digestive disorders.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">Endoscopy</span>
+                                <span class="badge bg-light text-dark">IBD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card doctor-card h-100">
+                        <div class="doctor-img-container">
+                            <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 class="doctor-img" alt="Dr. Amanda Rodriguez">
+                            <div class="doctor-overlay">
+                                <div class="d-flex justify-content-center mb-3">
+                                    <a href="#" class="text-white me-3"><i class="fab fa-linkedin fa-lg"></i></a>
+                                    <a href="#" class="text-white"><i class="fas fa-envelope fa-lg"></i></a>
+                                </div>
+                                <a href="#" class="btn btn-sm btn-outline-light w-100" onclick="showPage('appointment')">Book Appointment</a>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold text-darkblue mb-1">Dr. Amanda Rodriguez</h5>
+                            <p class="text-cyan mb-3">Oncologist</p>
+                            <p class="text-muted small mb-0">MD, FACP, 19+ years experience. Specializes in medical oncology and cancer treatment.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-1">Chemotherapy</span>
+                                <span class="badge bg-light text-dark">Immunotherapy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Horario Semanal -->
+            <div class="row mt-5 pt-5">
+                <div class="col-12 mb-5">
+                    <h3 class="fw-bold text-darkblue mb-4 text-center">Weekly Doctor Schedule</h3>
+                    <p class="text-muted text-center mb-4">Find available appointment slots with our specialists. Schedule your visit at your convenience.</p>
+                </div>
+                
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered timetable-table">
+                            <thead class="bg-darkblue text-white">
+                                <tr>
+                                    <th class="py-3 text-center">Time</th>
+                                    <th class="py-3 text-center">Monday</th>
+                                    <th class="py-3 text-center">Tuesday</th>
+                                    <th class="py-3 text-center">Wednesday</th>
+                                    <th class="py-3 text-center">Thursday</th>
+                                    <th class="py-3 text-center">Friday</th>
+                                    <th class="py-3 text-center">Saturday</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold bg-light text-center align-middle">09:00 - 10:30</td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-cyan mb-1">Cardiology</span>
+                                            <small>Dr. Muldoone</small>
+                                            <small class="text-muted">Room 301</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-warning text-dark mb-1">Neurology</span>
+                                            <small>Dr. Brian</small>
+                                            <small class="text-muted">Room 205</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-success mb-1">General</span>
+                                            <small>Dr. Smith</small>
+                                            <small class="text-muted">Room 101</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-danger mb-1">Pediatrics</span>
+                                            <small>Dr. Andaloro</small>
+                                            <small class="text-muted">Room 401</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-info text-dark mb-1">Dental</span>
+                                            <small>Dr. Mark</small>
+                                            <small class="text-muted">Room 502</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-cyan mb-1">Cardiology</span>
+                                            <small>Dr. Muldoone</small>
+                                            <small class="text-muted">Room 301</small>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold bg-light text-center align-middle">10:30 - 12:00</td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-danger mb-1">Pediatrics</span>
+                                            <small>Dr. Andaloro</small>
+                                            <small class="text-muted">Room 401</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-secondary mb-1">X-Ray</span>
+                                            <small>Dr. Doe</small>
+                                            <small class="text-muted">Imaging Center</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-warning text-dark mb-1">Neurology</span>
+                                            <small>Dr. Brian</small>
+                                            <small class="text-muted">Room 205</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-success mb-1">General</span>
+                                            <small>Dr. Smith</small>
+                                            <small class="text-muted">Room 101</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-cyan mb-1">Cardiology</span>
+                                            <small>Dr. Muldoone</small>
+                                            <small class="text-muted">Room 301</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-info text-dark mb-1">Dental</span>
+                                            <small>Dr. Mark</small>
+                                            <small class="text-muted">Room 502</small>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold bg-light text-center align-middle">13:00 - 14:30</td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-cyan mb-1">Cardiology</span>
+                                            <small>Dr. Muldoone</small>
+                                            <small class="text-muted">Room 301</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-secondary mb-1">X-Ray</span>
+                                            <small>Dr. Doe</small>
+                                            <small class="text-muted">Imaging Center</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-success mb-1">General</span>
+                                            <small>Dr. Smith</small>
+                                            <small class="text-muted">Room 101</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-warning text-dark mb-1">Neurology</span>
+                                            <small>Dr. Brian</small>
+                                            <small class="text-muted">Room 205</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-danger mb-1">Pediatrics</span>
+                                            <small>Dr. Andaloro</small>
+                                            <small class="text-muted">Room 401</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-info text-dark mb-1">Dental</span>
+                                            <small>Dr. Mark</small>
+                                            <small class="text-muted">Room 502</small>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold bg-light text-center align-middle">14:30 - 16:00</td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-warning text-dark mb-1">Neurology</span>
+                                            <small>Dr. Brian</small>
+                                            <small class="text-muted">Room 205</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-cyan mb-1">Cardiology</span>
+                                            <small>Dr. Muldoone</small>
+                                            <small class="text-muted">Room 301</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-danger mb-1">Pediatrics</span>
+                                            <small>Dr. Andaloro</small>
+                                            <small class="text-muted">Room 401</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-success mb-1">General</span>
+                                            <small>Dr. Smith</small>
+                                            <small class="text-muted">Room 101</small>
+                                        </div>
+                                    </td>
+                                    <td class="bg-light">
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-secondary mb-1">X-Ray</span>
+                                            <small>Dr. Doe</small>
+                                            <small class="text-muted">Imaging Center</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-column">
+                                            <span class="badge bg-success mb-1">General</span>
+                                            <small>Dr. Smith</small>
+                                            <small class="text-muted">Room 101</small>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-appoint" onclick="showPage('appointment')">
+                            <i class="fas fa-calendar-check me-2"></i>Book Appointment Online
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección SHOP Mejorada -->
+    <section id="shop" class="page-section">
+        <div class="page-header">
+            <div class="container">
+                <h1>Medical Shop</h1>
+                <p class="lead">Quality medical supplies, equipment, and wellness products for your healthcare needs.</p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Medical Shop</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="container mb-5">
+            <div class="row">
+                <!-- Filtros -->
+                <div class="col-lg-3 mb-4">
+                    <div class="bg-white p-4 rounded-lg shadow-soft sticky-top" style="top: 100px;">
+                        <h5 class="fw-bold mb-4 text-darkblue border-bottom pb-3">Filter Products</h5>
+                        
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-3 text-darkblue">Price Range</h6>
+                            <input type="range" class="form-range" id="priceRange" min="0" max="500" step="10">
+                            <div class="d-flex justify-content-between mt-2">
+                                <span>$<span id="minPrice">0</span></span>
+                                <span>$<span id="maxPrice">500</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-3 text-darkblue">Categories</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat1" checked>
+                                <label class="form-check-label text-muted" for="cat1">Medicines (24)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat2">
+                                <label class="form-check-label text-muted" for="cat2">Equipment (18)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat3" checked>
+                                <label class="form-check-label text-muted" for="cat3">Vitamins (32)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat4">
+                                <label class="form-check-label text-muted" for="cat4">Hygiene Products (15)</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cat5">
+                                <label class="form-check-label text-muted" for="cat5">First Aid (12)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="cat6">
+                                <label class="form-check-label text-muted" for="cat6">Wellness (21)</label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h6 class="fw-bold mb-3 text-darkblue">Brands</h6>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="brand1">
+                                <label class="form-check-label text-muted" for="brand1">Johnson & Johnson</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="brand2">
+                                <label class="form-check-label text-muted" for="brand2">Pfizer</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="brand3">
+                                <label class="form-check-label text-muted" for="brand3">Bayer</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="brand4">
+                                <label class="form-check-label text-muted" for="brand4">GSK</label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-appoint w-100" onclick="filterProducts()">
+                            <i class="fas fa-filter me-2"></i>Apply Filters
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Productos -->
+                <div class="col-lg-9">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h3 class="fw-bold text-darkblue">Medical Products</h3>
+                            <p class="text-muted">Showing 1-12 of 68 products</p>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <select class="form-select w-auto d-inline-block">
+                                <option selected>Sort by: Popularity</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Newest First</option>
+                                <option>Customer Ratings</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Producto 1 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <span class="product-badge badge-sale">SALE -20%</span>
+                                <span class="product-badge badge-popular" style="top: 50px;">POPULAR</span>
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Vitamins">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Daily Multivitamins</h6>
+                                    <p class="text-muted small mb-2">Essential vitamins and minerals for daily health support</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <small class="text-muted ms-1">(42)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$18.00 <s class="text-muted small">$22.00</s></p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Daily Multivitamins', 18)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 2 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <span class="product-badge badge-new">NEW</span>
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1584036561566-b93a901668d3?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Thermometer">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Digital Thermometer</h6>
+                                    <p class="text-muted small mb-2">Fast and accurate temperature measurement in seconds</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <small class="text-muted ms-1">(28)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$45.00</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Digital Thermometer', 45)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 3 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1586942593568-29361efcd571?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Masks">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Surgical Masks (50pcs)</h6>
+                                    <p class="text-muted small mb-2">3-ply disposable masks with high filtration efficiency</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <small class="text-muted ms-1">(156)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$15.00</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Surgical Masks (50pcs)', 15)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 4 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1584744982491-665216d95f8b?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Sanitizer">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Hand Sanitizer Gel</h6>
+                                    <p class="text-muted small mb-2">Alcohol-based sanitizer with moisturizers, 500ml bottle</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <small class="text-muted ms-1">(89)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$8.50</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Hand Sanitizer Gel', 8.5)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 5 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1576091160550-217358c7db81?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Stethoscope">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Professional Stethoscope</h6>
+                                    <p class="text-muted small mb-2">Dual-head stethoscope for accurate auscultation</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <small class="text-muted ms-1">(63)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$120.00</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Professional Stethoscope', 120)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 6 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <span class="product-badge badge-sale">SALE -50%</span>
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1603398938378-e54eab446dde?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="First Aid">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Emergency First Aid Kit</h6>
+                                    <p class="text-muted small mb-2">Comprehensive kit for home, car, or workplace emergencies</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <small class="text-muted ms-1">(47)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$35.00 <s class="text-muted small">$70.00</s></p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Emergency First Aid Kit', 35)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 7 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <div class="product-img-container">
+                                    <img src="https://plus.unsplash.com/premium_photo-1663040329615-585e94119d54?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Oximeter">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Pulse Oximeter</h6>
+                                    <p class="text-muted small mb-2">Fingertip oxygen saturation and pulse rate monitor</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <small class="text-muted ms-1">(34)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$25.00</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Pulse Oximeter', 25)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 8 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1585435557343-3b092031a831?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Pills">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Pain Relief Tablets</h6>
+                                    <p class="text-muted small mb-2">Fast-acting pain relief for headaches and minor aches</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <small class="text-muted ms-1">(112)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$12.00</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Pain Relief Tablets', 12)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 9 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <span class="product-badge badge-new">NEW</span>
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Blood Pressure">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Blood Pressure Monitor</h6>
+                                    <p class="text-muted small mb-2">Digital automatic upper arm blood pressure monitor</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <small class="text-muted ms-1">(29)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$65.00</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Blood Pressure Monitor', 65)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 10 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Vitamins C">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Vitamin C 1000mg</h6>
+                                    <p class="text-muted small mb-2">High potency Vitamin C tablets for immune support</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <small class="text-muted ms-1">(78)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$14.50</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Vitamin C 1000mg', 14.5)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 11 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Bandages">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Medical Bandages Set</h6>
+                                    <p class="text-muted small mb-2">Assorted bandages for wound care and first aid</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <small class="text-muted ms-1">(41)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$9.99</p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Medical Bandages Set', 9.99)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Producto 12 -->
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                            <div class="card product-card h-100">
+                                <span class="product-badge badge-sale">SALE -30%</span>
+                                <div class="product-img-container">
+                                    <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?auto=format&fit=crop&w=400&q=80" 
+                                         class="product-img" alt="Inhaler">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h6 class="fw-bold text-darkblue mb-2">Asthma Inhaler</h6>
+                                    <p class="text-muted small mb-2">Relief inhaler for asthma symptoms (Prescription required)</p>
+                                    <div class="product-rating mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <small class="text-muted ms-1">(23)</small>
+                                    </div>
+                                    <p class="text-cyan fw-bold mb-2">$28.00 <s class="text-muted small">$40.00</s></p>
+                                    <button class="btn btn-outline-info btn-sm rounded-pill w-100" onclick="addToCart('Asthma Inhaler', 28)">
+                                        <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Paginación -->
+                    <nav aria-label="Page navigation" class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección BLOG -->
+    <section id="blog" class="page-section">
+        <div class="page-header">
+            <div class="container">
+                <h1>Health Blog & News</h1>
+                <p class="lead">Stay informed with the latest health tips, medical news, and wellness advice.</p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="container mb-5">
+            <div class="row">
+                <!-- Artículos Destacados -->
+                <div class="col-lg-8 mb-5">
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h3 class="fw-bold text-darkblue border-bottom pb-3">Latest Articles</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Artículo 1 -->
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-soft h-100">
+                                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     class="card-img-top rounded-lg" alt="Heart Health" style="height: 220px; object-fit: cover;">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <span class="badge bg-cyan">Cardiology</span>
+                                        <small class="text-muted">Mar 15, 2025</small>
+                                    </div>
+                                    <h5 class="fw-bold text-darkblue">10 Ways to Improve Your Heart Health</h5>
+                                    <p class="text-muted">Learn simple lifestyle changes that can significantly reduce your risk of heart disease and improve cardiovascular health.</p>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&q=80" 
+                                             class="rounded-circle me-2" alt="Author" width="30" height="30">
+                                        <small class="text-muted">By Dr. Richard Muldoone</small>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0">
+                                    <a href="#" class="text-cyan fw-bold text-decoration-none">Read More <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Artículo 2 -->
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-soft h-100">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     class="card-img-top rounded-lg" alt="Mental Health" style="height: 220px; object-fit: cover;">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <span class="badge bg-warning text-dark">Mental Health</span>
+                                        <small class="text-muted">Mar 10, 2025</small>
+                                    </div>
+                                    <h5 class="fw-bold text-darkblue">Managing Stress in Modern Life</h5>
+                                    <p class="text-muted">Effective strategies to cope with daily stress and maintain mental well-being in today's fast-paced world.</p>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&q=80" 
+                                             class="rounded-circle me-2" alt="Author" width="30" height="30">
+                                        <small class="text-muted">By Dr. Michael Brian</small>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0">
+                                    <a href="#" class="text-cyan fw-bold text-decoration-none">Read More <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Artículo 3 -->
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-soft h-100">
+                                <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     class="card-img-top rounded-lg" alt="Nutrition" style="height: 220px; object-fit: cover;">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <span class="badge bg-success">Nutrition</span>
+                                        <small class="text-muted">Mar 5, 2025</small>
+                                    </div>
+                                    <h5 class="fw-bold text-darkblue">The Mediterranean Diet: Benefits & Guidelines</h5>
+                                    <p class="text-muted">Discover why the Mediterranean diet is consistently ranked as one of the healthiest eating patterns in the world.</p>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&q=80" 
+                                             class="rounded-circle me-2" alt="Author" width="30" height="30">
+                                        <small class="text-muted">By Dr. Maria Andaloro</small>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0">
+                                    <a href="#" class="text-cyan fw-bold text-decoration-none">Read More <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Artículo 4 -->
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-soft h-100">
+                                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     class="card-img-top rounded-lg" alt="Exercise" style="height: 220px; object-fit: cover;">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <span class="badge bg-info">Fitness</span>
+                                        <small class="text-muted">Feb 28, 2025</small>
+                                    </div>
+                                    <h5 class="fw-bold text-darkblue">Exercise for All Ages: Finding What Works</h5>
+                                    <p class="text-muted">Tailored exercise recommendations for different age groups to maintain fitness and mobility throughout life.</p>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://images.unsplash.com/photo-1594824434340-7e7dfc37cabb?ixlib=rb-4.0.3&auto=format&fit=crop&w=40&q=80" 
+                                             class="rounded-circle me-2" alt="Author" width="30" height="30">
+                                        <small class="text-muted">By Dr. James Wilson</small>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent border-top-0">
+                                    <a href="#" class="text-cyan fw-bold text-decoration-none">Read More <i class="fas fa-arrow-right ms-1"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Paginación Blog -->
+                    <nav aria-label="Blog pagination" class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <!-- Sidebar del Blog -->
+                <div class="col-lg-4">
+                    <!-- Búsqueda -->
+                    <div class="bg-white p-4 rounded-lg shadow-soft mb-4">
+                        <h5 class="fw-bold text-darkblue mb-3">Search Articles</h5>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search blog...">
+                            <button class="btn btn-cyan text-white" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Categorías -->
+                    <div class="bg-white p-4 rounded-lg shadow-soft mb-4">
+                        <h5 class="fw-bold text-darkblue mb-3">Categories</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2 pb-2 border-bottom">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                    <span class="text-muted">Cardiology</span>
+                                    <span class="badge bg-light text-dark">12</span>
+                                </a>
+                            </li>
+                            <li class="mb-2 pb-2 border-bottom">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                    <span class="text-muted">Nutrition</span>
+                                    <span class="badge bg-light text-dark">8</span>
+                                </a>
+                            </li>
+                            <li class="mb-2 pb-2 border-bottom">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                    <span class="text-muted">Mental Health</span>
+                                    <span class="badge bg-light text-dark">15</span>
+                                </a>
+                            </li>
+                            <li class="mb-2 pb-2 border-bottom">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                    <span class="text-muted">Preventive Care</span>
+                                    <span class="badge bg-light text-dark">11</span>
+                                </a>
+                            </li>
+                            <li class="mb-2 pb-2 border-bottom">
+                                <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                    <span class="text-muted">Pediatrics</span>
+                                    <span class="badge bg-light text-dark">7</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                    <span class="text-muted">Fitness</span>
+                                    <span class="badge bg-light text-dark">9</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Artículos Populares -->
+                    <div class="bg-white p-4 rounded-lg shadow-soft mb-4">
+                        <h5 class="fw-bold text-darkblue mb-3">Popular Posts</h5>
+                        <div class="d-flex mb-3 pb-3 border-bottom">
+                            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" 
+                                 class="rounded me-3" alt="Post" width="60" height="60" style="object-fit: cover;">
+                            <div>
+                                <h6 class="fw-bold text-darkblue mb-1">Understanding Asthma Triggers</h6>
+                                <small class="text-muted">Feb 20, 2025</small>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3 pb-3 border-bottom">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" 
+                                 class="rounded me-3" alt="Post" width="60" height="60" style="object-fit: cover;">
+                            <div>
+                                <h6 class="fw-bold text-darkblue mb-1">Benefits of Regular Exercise</h6>
+                                <small class="text-muted">Feb 15, 2025</small>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" 
+                                 class="rounded me-3" alt="Post" width="60" height="60" style="object-fit: cover;">
+                            <div>
+                                <h6 class="fw-bold text-darkblue mb-1">Healthy Eating on a Budget</h6>
+                                <small class="text-muted">Feb 10, 2025</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="bg-cyan text-white p-4 rounded-lg">
+                        <h5 class="fw-bold mb-3">Health Newsletter</h5>
+                        <p class="small mb-3">Subscribe to receive monthly health tips and updates from our medical team.</p>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-dark text-white" type="button">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <small class="d-block text-center">We respect your privacy. Unsubscribe at any time.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección APPOINTMENT -->
+    <section id="appointment" class="page-section">
+        <div class="page-header">
+            <div class="container">
+                <h1>Book an Appointment</h1>
+                <p class="lead">Schedule your visit with our medical specialists quickly and conveniently.</p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Appointment</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="bg-white rounded-lg shadow-soft p-5">
+                        <h3 class="fw-bold text-darkblue mb-4 text-center">Schedule Your Visit</h3>
+                        <p class="text-muted text-center mb-5">Fill out the form below and we'll contact you to confirm your appointment.</p>
+                        
+                        <form id="appointmentForm">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                                        <label for="firstName">First Name *</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                                        <label for="lastName">Last Name *</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                        <label for="email">Email Address *</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="phone" placeholder="Phone" required>
+                                        <label for="phone">Phone Number *</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="department" required>
+                                            <option value="" selected disabled>Select Department</option>
+                                            <option value="cardiology">Cardiology</option>
+                                            <option value="neurology">Neurology</option>
+                                            <option value="orthopedics">Orthopedics</option>
+                                            <option value="pediatrics">Pediatrics</option>
+                                            <option value="dermatology">Dermatology</option>
+                                            <option value="ophthalmology">Ophthalmology</option>
+                                            <option value="dental">Dental Care</option>
+                                            <option value="general">General Medicine</option>
+                                        </select>
+                                        <label for="department">Medical Department *</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="doctor" required>
+                                            <option value="" selected disabled>Select Doctor</option>
+                                            <option value="dr_muldoone">Dr. Richard Muldoone (Cardiology)</option>
+                                            <option value="dr_andaloro">Dr. Maria Andaloro (Pediatrics)</option>
+                                            <option value="dr_brian">Dr. Michael Brian (Neurology)</option>
+                                            <option value="dr_palmer">Dr. Sarah Palmer (Dermatology)</option>
+                                            <option value="dr_wilson">Dr. James Wilson (Orthopedics)</option>
+                                            <option value="dr_chen">Dr. Lisa Chen (Ophthalmology)</option>
+                                        </select>
+                                        <label for="doctor">Preferred Doctor *</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" id="date" required min="2025-03-20">
+                                        <label for="date">Preferred Date *</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="time" required>
+                                            <option value="" selected disabled>Select Time</option>
+                                            <option value="09:00">09:00 AM</option>
+                                            <option value="10:00">10:00 AM</option>
+                                            <option value="11:00">11:00 AM</option>
+                                            <option value="13:00">01:00 PM</option>
+                                            <option value="14:00">02:00 PM</option>
+                                            <option value="15:00">03:00 PM</option>
+                                            <option value="16:00">04:00 PM</option>
+                                        </select>
+                                        <label for="time">Preferred Time *</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="message" placeholder="Message" style="height: 120px"></textarea>
+                                        <label for="message">Additional Information (Symptoms, Concerns, etc.)</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="terms" required>
+                                        <label class="form-check-label text-muted" for="terms">
+                                            I agree to the <a href="#" class="text-cyan">Terms & Conditions</a> and <a href="#" class="text-cyan">Privacy Policy</a>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-4">
+                                    <button type="submit" class="btn btn-appoint btn-lg px-5">
+                                        <i class="fas fa-calendar-check me-2"></i>Book Appointment
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="mt-5 pt-4 border-top">
+                            <h5 class="fw-bold text-darkblue mb-3">Appointment Information</h5>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-clock text-cyan fa-lg me-3 mt-1"></i>
+                                        <div>
+                                            <h6 class="fw-bold text-darkblue mb-1">Appointment Hours</h6>
+                                            <p class="text-muted small mb-0">Mon-Fri: 8:00 AM - 8:00 PM<br>Sat: 9:00 AM - 6:00 PM<br>Sun: 10:00 AM - 4:00 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-info-circle text-cyan fa-lg me-3 mt-1"></i>
+                                        <div>
+                                            <h6 class="fw-bold text-darkblue mb-1">What to Bring</h6>
+                                            <p class="text-muted small mb-0">Insurance card, Photo ID, Previous medical records, List of current medications</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección CONTACT Mejorada -->
+    <section id="contact" class="page-section">
+        <div class="page-header">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p class="lead">Get in touch with us for any inquiries or to schedule your visit.</p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        
+        <div class="container mb-5">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h3 class="fw-bold mb-4 text-darkblue">Get in Touch</h3>
+                    <p class="mb-4 text-muted">We're here to help with any questions about our services, appointments, or general inquiries.</p>
+                    
+                    <div class="mb-5">
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="bg-cyan text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-darkblue mb-1">Our Location</h6>
+                                <p class="text-muted mb-0">2307 Beverley Road<br>Brooklyn, New York 11226<br>United States</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="bg-cyan text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-darkblue mb-1">Contact Numbers</h6>
+                                <p class="text-muted mb-0">
+                                    <strong>Appointments:</strong> (718) 555-0123<br>
+                                    <strong>Emergency:</strong> (718) 555-0124<br>
+                                    <strong>General Inquiries:</strong> (718) 555-0125
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="bg-cyan text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-darkblue mb-1">Email Addresses</h6>
+                                <p class="text-muted mb-0">
+                                    <strong>General:</strong> info@medisch.com<br>
+                                    <strong>Appointments:</strong> appointments@medisch.com<br>
+                                    <strong>Emergency:</strong> emergency@medisch.com
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-start">
+                            <div class="bg-cyan text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-darkblue mb-1">Working Hours</h6>
+                                <p class="text-muted mb-0">
+                                    <strong>Mon-Fri:</strong> 8:00 AM - 10:00 PM<br>
+                                    <strong>Saturday:</strong> 9:00 AM - 8:00 PM<br>
+                                    <strong>Sunday:</strong> 10:00 AM - 6:00 PM
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h5 class="fw-bold text-darkblue mb-3">Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7">
+                    <div class="bg-white rounded-lg shadow-soft p-5">
+                        <h3 class="fw-bold mb-4 text-darkblue">Send Us a Message</h3>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="contactName" placeholder="Name" required>
+                                        <label for="contactName">Your Name *</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="contactEmail" placeholder="Email" required>
+                                        <label for="contactEmail">Email Address *</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="contactSubject" placeholder="Subject" required>
+                                        <label for="contactSubject">Subject *</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="contactMessage" placeholder="Message" style="height: 150px" required></textarea>
+                                        <label for="contactMessage">Your Message *</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-appoint w-100 py-3">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <h5 class="fw-bold text-darkblue mb-4">Find Us on Map</h5>
+                        <div class="rounded-lg overflow-hidden shadow-soft" style="height: 350px;">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a23e28c1191%3A0x49f75d3281df052a!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal del Carrito -->
+    <div class="modal fade cart-modal" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-darkblue text-white">
+                    <h5 class="modal-title" id="cartModalLabel"><i class="fas fa-shopping-cart me-2"></i>Your Shopping Cart</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cart-items">
+                        <!-- Los productos del carrito se insertarán aquí dinámicamente -->
+                        <div class="text-center py-5" id="empty-cart">
+                            <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+                            <h5 class="text-darkblue">Your cart is empty</h5>
+                            <p class="text-muted">Add some medical products to your cart</p>
+                            <button class="btn btn-outline-cyan mt-2" onclick="showPage('shop')">
+                                <i class="fas fa-shopping-bag me-2"></i>Continue Shopping
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex justify-content-between w-100">
+                        <div>
+                            <h5 class="text-darkblue mb-0">Total: <span id="cart-total">$0.00</span></h5>
+                            <small class="text-muted">Excluding shipping and taxes</small>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-outline-secondary me-2" data-bs-dismiss="modal">Continue Shopping</button>
+                            <button type="button" class="btn btn-appoint" id="checkout-btn" disabled>Proceed to Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Mejorado -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h5 class="navbar-brand text-white fst-italic mb-4" style="font-size: 2rem;">Medisch</h5>
+                    <p class="small mb-4">Leading the way in medical excellence since 1998. Your health is our priority, providing compassionate care with cutting-edge technology.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-3"><a href="#" onclick="showPage('home')"><i class="fas fa-chevron-right me-2 text-cyan"></i>Home</a></li>
+                        <li class="mb-3"><a href="#" onclick="showPage('about')"><i class="fas fa-chevron-right me-2 text-cyan"></i>About Us</a></li>
+                        <li class="mb-3"><a href="#" onclick="showPage('services')"><i class="fas fa-chevron-right me-2 text-cyan"></i>Our Services</a></li>
+                        <li class="mb-3"><a href="#" onclick="showPage('doctors')"><i class="fas fa-chevron-right me-2 text-cyan"></i>Our Doctors</a></li>
+                        <li class="mb-3"><a href="#" onclick="showPage('appointment')"><i class="fas fa-chevron-right me-2 text-cyan"></i>Book Appointment</a></li>
+                        <li><a href="#" onclick="showPage('contact')"><i class="fas fa-chevron-right me-2 text-cyan"></i>Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h5>Medical Departments</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-3"><a href="#"><i class="fas fa-chevron-right me-2 text-cyan"></i>Cardiology</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-chevron-right me-2 text-cyan"></i>Neurology</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-chevron-right me-2 text-cyan"></i>Orthopedics</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-chevron-right me-2 text-cyan"></i>Pediatrics</a></li>
+                        <li class="mb-3"><a href="#"><i class="fas fa-chevron-right me-2 text-cyan"></i>Dermatology</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right me-2 text-cyan"></i>Dental Care</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-5">
+                    <h5>Newsletter</h5>
+                    <p class="small mb-3">Subscribe to our newsletter for the latest health updates and medical news.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email address">
+                        <button class="btn btn-cyan text-white" type="button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <p class="small text-muted mb-0">By subscribing, you agree to our Privacy Policy.</p>
+                </div>
+            </div>
+            
+            <div class="row pt-4 border-top border-secondary">
+                <div class="col-md-6">
+                    <small class="text-muted">© 2025 Medisch Healthcare Center. All Rights Reserved.</small>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">
+                        <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+                        <a href="#" class="text-decoration-none me-3">Terms of Service</a>
+                        <a href="#" class="text-decoration-none">Cookie Policy</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // SPA NAVIGATION LOGIC
+        function showPage(pageId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(s => s.classList.remove('active'));
+
+            // Mostrar la sección seleccionada
+            const target = document.getElementById(pageId);
+            if(target) target.classList.add('active');
+            else document.getElementById('home').classList.add('active');
+
+            // Actualizar menú de navegación
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => l.classList.remove('active'));
+            
+            const activeLink = document.getElementById('nav-' + pageId);
+            if(activeLink) activeLink.classList.add('active');
+
+            // Scroll suave al principio
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Actualizar título de la página
+            document.title = `Medisch - ${pageId.charAt(0).toUpperCase() + pageId.slice(1)}`;
+        }
+
+        // LOGICA DEL CARRITO MEJORADA
+        let cartCount = 0;
+        let cartItems = [];
+        let cartTotal = 0;
+        
+        function addToCart(productName, price) {
+            cartCount++;
+            cartItems.push({ name: productName, price: price });
+            cartTotal += price;
+            
+            // Actualizar badge
+            const badge = document.getElementById('cart-count');
+            badge.innerText = cartCount;
+            
+            // Animación del badge
+            badge.classList.add('bg-warning');
+            setTimeout(() => badge.classList.remove('bg-warning'), 300);
+            
+            // Actualizar modal del carrito si está abierto
+            updateCartModal();
+            
+            // Habilitar botón de checkout
+            document.getElementById('checkout-btn').disabled = false;
+            
+            // Notificación de éxito
+            showNotification(`${productName} added to cart!`, 'success');
+        }
+        
+        function updateCartModal() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalElement = document.getElementById('cart-total');
+            const emptyCartElement = document.getElementById('empty-cart');
+            
+            if (cartItems.length === 0) {
+                emptyCartElement.style.display = 'block';
+                cartTotalElement.textContent = '$0.00';
+                document.getElementById('checkout-btn').disabled = true;
+                return;
+            }
+            
+            emptyCartElement.style.display = 'none';
+            
+            let itemsHTML = '';
+            cartItems.forEach((item, index) => {
+                itemsHTML += `
+                <div class="cart-item">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <h6 class="fw-bold text-darkblue mb-1">${item.name}</h6>
+                        </div>
+                        <div class="col-2 text-center">
+                            <span class="fw-bold">$${item.price.toFixed(2)}</span>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group input-group-sm">
+                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(${index}, -1)">-</button>
+                                <input type="text" class="form-control text-center" value="1" readonly>
+                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="col-2 text-end">
+                            <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+            
+            cartItemsContainer.innerHTML = itemsHTML;
+            cartTotalElement.textContent = `$${cartTotal.toFixed(2)}`;
+        }
+        
+        function updateQuantity(index, change) {
+            // En una implementación real, actualizarías la cantidad y recalcularías el total
+            showNotification('Quantity updated', 'info');
+        }
+        
+        function removeFromCart(index) {
+            cartCount--;
+            cartTotal -= cartItems[index].price;
+            cartItems.splice(index, 1);
+            
+            // Actualizar badge
+            const badge = document.getElementById('cart-count');
+            badge.innerText = cartCount;
+            
+            // Actualizar modal
+            updateCartModal();
+            
+            showNotification('Item removed from cart', 'warning');
+        }
+        
+        // Mostrar notificaciones
+        function showNotification(message, type) {
+            // Crear elemento de notificación
+            const notification = document.createElement('div');
+            notification.className = `position-fixed top-0 end-0 p-3 ${type === 'success' ? 'bg-success' : type === 'warning' ? 'bg-warning' : 'bg-info'} text-white rounded m-3`;
+            notification.style.zIndex = '1060';
+            notification.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'} me-2"></i>
+                    <span>${message}</span>
+                    <button type="button" class="btn-close btn-close-white ms-3" onclick="this.parentElement.parentElement.remove()"></button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-eliminar después de 3 segundos
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+        
+        // Inicializar contadores animados
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                let count = 0;
+                const increment = target / 100;
+                
+                const updateCounter = () => {
+                    if (count < target) {
+                        count += increment;
+                        counter.textContent = Math.ceil(count);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                // Iniciar contador cuando sea visible
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+                
+                observer.observe(counter);
+            });
+        }
+        
+        // Cambiar navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Inicializar filtros de precio
+        const priceRange = document.getElementById('priceRange');
+        const minPrice = document.getElementById('minPrice');
+        const maxPrice = document.getElementById('maxPrice');
+        
+        priceRange.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            minPrice.textContent = '0';
+            maxPrice.textContent = value.toString();
+        });
+        
+        // Filtrar productos
+        function filterProducts() {
+            showNotification('Filters applied successfully', 'success');
+        }
+        
+        // Manejar envío de formularios
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showNotification('Appointment request submitted successfully! We will contact you shortly.', 'success');
+            this.reset();
+        });
+        
+        // Inicializar cuando la página cargue
+        document.addEventListener('DOMContentLoaded', function() {
+            initCounters();
+            updateCartModal();
+        });
+    </script>
+</body>
+</html>
